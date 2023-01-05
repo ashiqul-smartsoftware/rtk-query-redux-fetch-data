@@ -4,11 +4,11 @@ export const apiSlice = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: "https://jsonplaceholder.typicode.com"
   }),
-  tagTypes: ["Post"],
+  tagTypes: ["Photo"],
   endpoints: (builder) => ({
-    getPosts: builder.query({
-      query: () => "/posts"
+    getPhotos: builder.query({
+      query: () => "/photos"
     })
   })
 });
-export const { useGetPostsQuery } = apiSlice;
+export const { useGetPhotosQuery } = apiSlice;

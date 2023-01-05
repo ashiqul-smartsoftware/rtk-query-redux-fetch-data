@@ -1,13 +1,14 @@
 import React from "react";
-import { useGetPostsQuery } from "../api/apiSlice";
+import { useGetPhotosQuery } from "../api/apiSlice";
 
 const PostCard = ({ content }) => {
   return (
     <div className="col-lg-12 mb-3 " key={content.id}>
       <div className="card">
         <div className="card-body">
+          <img src={content.thumbnailUrl} alt="" />
           <h5 className="card-title">{content.title}</h5>
-          <p className="card-text">{content.body}</p>
+          <a href={content.url}>link</a>
         </div>
       </div>
     </div>
@@ -15,12 +16,12 @@ const PostCard = ({ content }) => {
 };
 function PostsList() {
   const {
-    data: posts,
+    data: photos,
     isLoading,
     isSuccess,
     isError,
     error
-  } = useGetPostsQuery();
+  } = useGetPhotosQuery();
   let postContent;
   if (isLoading) {
     postContent = (
@@ -31,7 +32,7 @@ function PostsList() {
       </div>
     );
   } else if (isSuccess) {
-    postContent = posts.map((item) => {
+    postContent = photos.map((item) => {
       return <PostCard content={item} key={item.id} />;
     });
   } else if (isError) {
